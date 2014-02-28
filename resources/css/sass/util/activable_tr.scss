@@ -1,0 +1,50 @@
+tr.activable
+{
+	position: relative;
+	cursor: pointer;
+	@include transition(background 0.2s ease-out);
+	&:hover
+	{
+		background: $dark-brown;
+		@include transition(none);
+	}
+}
+tr.activable.active
+{
+	background: $gold-brown !important;
+	border: solid 1px $gold-brown;
+	border-top: none;
+	border-bottom: none;
+	color: #000;
+	
+	a
+	{
+		color: #000 !important;
+	}
+}
+tr.activable.active + tr.content
+{
+	width: auto;
+	position: relative;
+	vertical-align: top;
+	border: solid 1px $gold-brown;
+	border-top: none;
+	display: table-row;
+	@include box-shadow(0 0 3px $gold-brown);
+}
+tr.content
+{
+	overflow: hidden;
+	position: absolute;
+	border: none;
+	display: none;
+	td
+	{
+		border: none;
+	}
+	ul
+	{
+		margin-top: 0;
+		margin-bottom: 3px;
+	}
+}

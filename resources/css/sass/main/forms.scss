@@ -1,0 +1,184 @@
+fieldset
+{
+  position: relative;
+}
+
+input::-webkit-input-placeholder { // WebKit browsers */
+	color: $light-gray;
+	@include opacity(1);
+}
+input:-moz-placeholder { // Mozilla Firefox 4 to 18 */
+  	color: $light-gray;
+	@include opacity(1);
+}
+input::-moz-placeholder { // Mozilla Firefox 19+ */
+ 	color: $light-gray;
+	@include opacity(1);
+}
+input:-ms-input-placeholder { // Internet Explorer 10+ */
+  	color: $light-gray;
+	@include opacity(1);
+}
+
+input.spinner
+{
+	border: none;
+	background: none;
+}
+input.spinner,.spinner-block
+{
+  width: 35px;
+	font-weight: bold;
+	line-height: 28px;
+}
+.spinner-block
+{
+  width: 90px;
+  padding: 0;
+  border: none;
+  visibility: hidden;
+  @include box-shadow(none);
+  
+  //Disable  select on double-click */
+  -webkit-user-select: none; // Chrome/Safari */        
+  -moz-user-select: none; // Firefox */
+  -ms-user-select: none; // IE10+ */
+  -o-user-select: none;
+  user-select: none;    
+  
+  color: $near-white;
+	background: $gray;
+}
+.spinner-up, .spinner-down
+{
+	position: relative;
+	padding: 4px 4px;
+	width: 18px;
+	display: inline-block;
+	margin: 0;
+
+	cursor: pointer;
+	z-index: 10;
+	
+	border: none; 
+	line-height: 21px;
+	text-align: center;
+	overflow: hidden;
+	font-weight: bold;
+	font-size: 16px;
+	
+	&:active
+	{
+		background: $main-color;
+	}
+}
+.spinner-up
+{
+	@include border-radius(0 4px 4px 0);
+	float: right;
+	border-left: solid 1px $dark-gray; 
+}
+.spinner-down
+{	
+	@include border-radius(4px 0 0 4px);
+	float: left;
+	border-right: solid 1px $dark-gray; 
+}
+.spinner-value
+{	
+	text-align: center;
+	display: block;
+	width: auto;
+	position: relative;
+	top: 1px;
+	z-index: 0;
+}
+
+@mixin default_btn_colors()
+{
+	background: $main-color;
+	color: $near-white;
+	@include box-shadow(inset 0 1px $main-color-light, inset 0 -1px $main-color-dark, 1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+input:not([type="submit"]), .select, .spinner-block, textarea, .betterselect
+{
+	color: $near-black;
+	border: none;
+	@include border-radius(3px);
+	background: $near-white;
+
+	outline: none;
+	padding-top: 6px;
+	padding-bottom: 4px;
+	padding-left: 5px * $g;
+	padding-right: 5px * $g;
+	margin-top: 5px;
+	display: inline-block;
+}
+input[type="submit"], input[type="button"], .submit, .toggle-btn, .btn
+{
+	@include default_btn_colors();
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	
+	@include border-radius(4px);
+	margin-bottom: 10px; 
+	font-weight: bold;
+	padding-top: 8px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+	
+	text-decoration: none;
+
+	&:hover, &:active
+	{
+		color: #fff;
+		text-decoration: none;
+	}
+	
+	&[disabled]
+	{ 
+		background: $light-gray;
+		color: $gray;
+		cursor: default;
+		color: $gray;
+		background: $light-gray;
+	  @include box-shadow(0 1px adjust-lightness($light-gray, -20), inset 0 1px #000);
+	}
+	&.cancel
+	{
+		background: $light-gray;
+		border: $dark-gray;
+		@include box-shadow(none);
+		@include text-shadow(none);
+		@include text-shadow(none);
+		&:hover
+		{
+			text-decoration: none;
+		}
+	}
+}
+
+.toggle-btn
+{
+	color: $near-white;
+  background: desaturate($main-color, 100%);
+	@include box-shadow(inset 0 1px desaturate($main-color-light, 100%), inset 0 -1px desaturate($main-color-dark, 100%), 1px 1px 2px rgba(0, 0, 0, 0.2));
+  
+	margin-bottom: 0px; 
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  display: inline-block;
+  &.on, &:active:hover
+  {
+		@include default_btn_colors();
+  }
+}
+input[type="checkbox"]
+{
+	width: auto !important;
+}

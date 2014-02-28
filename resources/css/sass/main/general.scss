@@ -1,0 +1,216 @@
+html
+{
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+body
+{
+ 	// white so 'non reworked page' are displayable
+	color: white;
+	//background-color: black;
+	background: url(../images/background-circles.jpg) #000;
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+	//background-color: $bgcolor; background-image: url(../images/noise.png);
+	//margin-top: $header-height - 2px;
+	padding: 0;
+}
+
+hr
+{
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.woody
+{
+  background: url(../images/bgwood.jpg); 
+	background-attachment: fixed;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+
+a
+{
+	text-decoration: underline;
+	color: $main-color;
+}
+
+img
+{
+	text-align: center;
+}
+
+.overlay
+{
+	position: fixed;
+	overflow: auto;
+	z-index: 999;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(20,20,20,0.6);
+	display: none;
+	@include opacity(0);
+	@include transition(all 0.3s ease-out);
+	text-align: center;
+	
+	&.active
+	{
+		@include opacity(1);
+		display: block;
+	}
+	
+	a.close
+	{
+		display: inline-block;
+		overflow: hidden;
+		float: right;
+		color: $light_gray;
+		text-decoration: none;
+		font-size: 1.8em;
+		font-weight: bold;
+		position: absolute;
+		right: 8px;
+		top: 0;//8px / $g;
+		z-index: 9;
+		
+		&:hover
+		{
+			color: adjust-lightness($light_gray, 15);
+		}
+	}
+}
+
+.fullw
+{
+	width: 100%;
+	input
+	{
+		width: 100%;
+		@include box-sizing(border-box);
+	}
+}
+
+.w1000
+{
+	&.first{
+		padding-top: 10px;
+	}
+	max-width: 1000px;
+	width: 100%;
+	margin: auto;
+}
+@media (min-width: 1400px)
+{
+	.w1000
+	{
+		max-width: 1100px;
+		width: 98%;
+		margin: auto;
+	}
+}
+
+@media (max-width: 767px)
+{
+	.habla-desktop
+	{
+		display: none;
+	}
+}
+
+iframe
+{
+	
+}
+iframe.facebook{
+	display:block;
+	max-width: 97%;
+}
+
+.back-to-menu
+{
+	font-size: 0.9em;
+}
+
+.alignr
+{
+	text-align: right;
+}
+.alignl
+{
+	text-align: left;
+}
+.alignj
+{
+	text-align: justify;
+}
+.alignc
+{
+	text-align: center;
+}
+
+.error //message au cas ou l'adresse n'est pas entrée
+{
+	background: rgba($very-dark-gray,.5);
+	margin-left: 8px;
+	margin: 10px 0;
+	padding: 4px 5px;
+	padding: 8px;
+	@include border-radius(4px);
+	color: #c00;
+	display: inline-block;
+	text-align: center;
+	text-align: left;
+	font-size: 14px;
+	
+	a
+	{
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+.dummy // !! pour supprimer des floats
+{
+	display: block;
+	height: 1px;
+	clear: both;
+	margin: 0px;
+	padding: 0px;
+	
+}
+
+.aleft
+{
+	text-align: left;
+}
+.aright
+{
+	text-align: right;
+}
+.acenter
+{
+	text-align: center;
+}
+.fleft
+{
+	float: left;
+}
+.fright
+{
+	float: right;
+}
+
+input:focus, textarea:focus, isindex:focus, keygen:focus, select:focus {
+outline-offset: -2px;
+}
+:focus {
+outline: -webkit-focus-ring-color auto 5px;
+outline: none;
+}

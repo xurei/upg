@@ -1,0 +1,62 @@
+@import "compass/css3/text-shadow";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/images";
+@import "compass/css3/box-sizing";
+@import "compass/css3/user-interface";
+@import "compass/css3/opacity";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+//@import "animation";
+
+//---------------- BASE COLORS ----------------
+$main-color: #C42626;
+
+$near-black: #111;
+$near-white: #eee;
+$light-gray: #999;
+$gray: #444;
+$dark-gray: #333;
+//-------------- END BASE COLORS --------------
+
+
+//-------------- DERIVED COLORS ---------------
+$main-color-lighter: lighten($main-color, 30);
+$main-color-light: lighten($main-color, 20);
+$main-color-dark: darken($main-color, 20);
+$main-color-darker: darken($main-color, 30);
+
+$very-light-gray: adjust-lightness($light-gray, +10);
+$very-dark-gray: adjust-lightness($dark-gray, -10);
+//------------ END DERIVED COLORS -------------
+
+$content-width: 1000px; // Contenu cadre
+$header-height: 44px;
+$infos-height: 90px;
+$filters-height: 54px;
+$filters-noaddress-height: 45px;
+$g: 1.62; // Gold Number
+
+@mixin cisel-borders($bg1, $bg2)
+{
+	border-top: solid 1px adjust-lightness($bg1, 10);
+	border-bottom: solid 1px adjust-lightness($bg2, -10);
+}
+@mixin cisel-gradient($bg1, $bg2)
+{
+	background-color: $bg1;
+	@include background($bg1 linear-gradient(top, $bg1, $bg2));
+}
+@mixin cisel($bg1, $bg2)
+{
+	@include cisel-gradient($bg1, $bg2);
+	@include cisel-borders($bg1, $bg2);
+}
+
+@mixin appearance($ap)
+{
+  -moz-appearance: $ap;
+  -webkit-appearance: $ap;
+  -o-appearance: $ap;
+  appearance: $ap;
+}
