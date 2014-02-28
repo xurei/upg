@@ -12,7 +12,7 @@ window.isSciNotation = function(i) {
 
 window.toKiloNotation = function(i) {
 	if (isSciNotation(i))
-		return i;
+		return i.toExponential(3);
 	if (i > 1000000000000)
 		return Math.floor(i/100000000000)/10+"T";
 	if (i > 1000000000)
@@ -64,10 +64,10 @@ window.toTimeReadable = function(seconds) {
 
 	if (y > 0)
 	{
-		if (!isSciNotation(y) && y > 1000)
-		{
+		if (isSciNotation(y))
+			return y.toExponential(3) + " years";
+		else if (y > 1000)
 			y = Math.floor(y/1000)+"M";
-		}
 		return ""+y+" years, "+d+" days";
 	}
 	else if (d > 0)
