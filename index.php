@@ -13,9 +13,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="resources/css/main.css">
-        <link rel="stylesheet" href="resources/js/passwordgenerator.js">
         <script src="resources/js/modernizr-2.6.2.min.js"></script>
-        <script src="resources/js/plugin.js"></script>
         <script src="resources/js/jquery-1.10.2.min.js"></script>
     </head>
     <body>
@@ -45,14 +43,12 @@
 	       					<p class="aleft">This generator tries to altern vowels and consonants to make the password easier to pronounce and remember<br> 
 	       					</p>
        					</div>
-       					<!-- 
        					<div class="password-type-block">
 	       					<div class="toggle-btn type-btn" data-target="sentence">Sentence password</div>
-	       					<p class="aleft">An easy but strong password made of words. References : <ul><li> <a target="_blank" href="http://xkcd.com/936/">this XKCD comics</a></li>
-	       					<li><a target="_blank" href="http://writing-program.uchicago.edu/toys/randomsentence/index.htm">writing-program.uchicago.edu</a></li>
-	       					</ul></p>
+	       					<p class="aleft">An easy but strong password made of words. Inspired from 
+	       					<a target="_blank" href="http://xkcd.com/936/">this strip</a>.
+	       					</p>
        					</div>
-       					 -->
 	        		</div>
 	        		<!-- --------------------------------------------------------- -->
 	        		<div class="main-block options-block span4">
@@ -88,15 +84,14 @@
 		       				</fieldset>
 	       				</div>
 	       				
-	       				
 	       				<div class="options-subblock options-sentence">
 		       				<h3>Number of words</h3>
-		       				<input type="text" id="option-length-sentence">
+		       				<input type="text" class="option-length" value="4"><br>
+		       				out of <span class="nb-words"></span> words : <span class="nb-cases"></span> different possibilities.
 		       				
-		       				<h3>Extras</h3>
-		       				<fieldset>
-		       					<input type="checkbox" id="option-punctuation"> <label for="option-punctuation">Punctuation</label><br>
-		       				</fieldset>
+	       					<input type="checkbox" class="type-char" id="option-pronounceable-capital" data-vowels="AEIOUY" data-consonants="ZRTPQSDFGHJKLMWXCVBN"> <label for="option-pronounceable-capital">Capital Letters</label><br>
+	       					<input type="checkbox" class="type-char" id="option-pronounceable-leet-mode" data-vowels="0134" data-consonants="125678"> <label for="option-pronounceable-leet-mode">1337 mode</label><br>
+		       				
 		       			</div>
 	       				<div class="acenter">
 	       					<input type="submit" class="btn" id="generate-btn" value="Generate !">
@@ -107,32 +102,76 @@
 	        		<div class="main-block robustness-block span4 acenter">
 	       				<h2>3. Test Robustness</h2>
 	       					<div class="acenter"><span id="bf-cases"></span><br>different passwords with this setup</div>
-	       				<h3>Brute force</h3>
-	       					<span id="bf-time"></span> at <span id="bf-speed"></span> guesses/s
+	       				<!-- <h3>Direct Guess</h3>
+	       					Brute force : <span id="bf-time"></span> at <span id="bf-speed"></span>/s -->
 	       				<h3>MD5</h3>
-	       					<span id="md5-time"></span> at <span id="md5-speed"></span> guesses/s<br>
-	       					(speed from <a target="_blank" href="http://hashcat.net/oclhashcat/">oclhashcat</a>)
+	       					<input type="text" class="hash-val" id="md5-val">
+	       					<a id="md5-revert" target="_blank" href="">Rainbow table reverse</a><br>
+	       					Brute force : <span id="md5-time"></span> at <span id="md5-speed"></span>/s<br>
+	       					(speed from <a target="_blank" href="http://hashcat.net/oclhashcat/">oclhashcat</a>)<br>
 	       				<h3>SHA-1</h3>
-	       					<span id="sha1-time"></span> at <span id="sha1-speed"></span> guesses/s<br>
-	       					(speed from <a target="_blank" href="http://hashcat.net/oclhashcat/">oclhashcat</a>)
+	       					<input type="text" class="hash-val" id="sha1-val">
+	       					Brute force : <span id="sha1-time"></span> at <span id="sha1-speed"></span>/s<br>
+	       					(speed from <a target="_blank" href="http://hashcat.net/oclhashcat/">oclhashcat</a>)<br>
+	       				<h3>SHA-256</h3>
+	       					<input type="text" class="hash-val" id="sha256-val">
+	       					Brute force : <span id="sha256-time"></span> at <span id="sha256-speed"></span>/s<br>
+	       					(speed from <a target="_blank" href="http://hashcat.net/oclhashcat/">oclhashcat</a>)<br>
 	        		</div>
 	        	</div>
+	        	
 	        </form>
+	        <div class="main-block references">
+	        	<h2>Notes</h2>
+	        	<p>
+	        		This generator is build with the spirit of making generated password easier to understand, 
+	        		but still hard to guess. A classical generator is provided for comparison.
+	        	</p>
+	        	<p>
+	        		The robustness of the password is estimated .
+	        	<p>
+	        		The software is entirely based on HTML5, CSS an Javascript. The source code is available at 
+	        		<a target="_blank" href="https://github.com/xurei/upg">Github</a>.
+	        	</p>
+	        	<p>
+	        		Features :
+	        		<ul>
+	        			<li>Three types of generators : classic, pronounceable, sentence</li>
+	        			<li>MD5, SHA-1, SHA-256 generation and robustness checking (based on the average speed found
+	        			on the <a target="_blank" href="http://hashcat.net/oclhashcat/">oclhashcat home page</a>, Performance section)</li>
+	        			<li>Rainbow table attack link for MD5</li>
+	        		</ul>
+	        	</p>
+	        	<h2>References</h2>
+	        	<ul>
+	        		<li><a target="_blank" href="http://xkcd.com/936/">xkcd : Password Strength</a></li>
+	        		<li>MD5 JS implementation : <a target="_blank" href="http://www.myersdaily.org/joseph/javascript/md5-text.html">myersdaily.org</a></li>
+	        		<li>SHA-1 JS implementation : <a target="_blank" href="http://www.movable-type.co.uk/scripts/sha1.html">movable-type.co.uk</a></li>
+	        		<li>SHA-256 JS implementation : <a target="_blank" href="http://www.webtoolkit.info/javascript-sha256.html">webtoolkit.info</a></li>
+	        	</ul>
+	        </div>
         </div>
+        
+        <div id="loading-box">Loading data...</div>
+        
+        <footer>
+        	<div class="w1000">Ultimate Password Generator - by xurei &copy; http://www.xurei-design.be/upg/</div>
+        </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="resources/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="resources/js/plugins.js"></script>
         <script src="resources/js/strategy_classic.js"></script>
         <script src="resources/js/strategy_pronounceable.js"></script>
+        <script src="resources/js/strategy_sentence.js"></script>
+        <script src="resources/js/robustness.js"></script>
         <script src="resources/js/main.js"></script>
+        <script src="resources/js/md5.js"></script>
+        <script src="resources/js/sha1.js"></script>
+        <script src="resources/js/sha256.js"></script>
         
         <?php if (file_exists("/home/olivier")): ?>
         	<script src="../cssrefresh.js"></script>
         <?php endif?>
-        
-        <footer>
-        	<div class="w1000">Ultimate Password Generator - by xurei &copy; http://www.xurei-design.be/upg/</div>
-        </footer>
     </body>
 </html>

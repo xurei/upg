@@ -1,41 +1,54 @@
-window.strategy_classic = function()
+window.strategy_sentence = function($)
 {
+	$options = $('.options-subblock.options-sentence');
+	
 	//PART 1 - DATA GATHERING AND ERROR CHECKING
 		var $passwordInput = $('#password');
-		var nb_chars = parseInt($('#option-length-classic').val().trim());
-		var possible_chars = "";
+		var nb_chars = parseInt($options.find('.option-length').val().trim());
 		var ok = true;
+
+		var is_capital = $options.find('#option-pronounceable-capital').is(':checked');
+		var leet_mode = $options.find('#option-pronounceable-leet-mode').is(':checked');
+		
+		var words = window.strategy_sentence_words;
+		if (words == undefined)
+		{
+			alert('Data is still loading...');
+		}
 		
 		if (!isInt(nb_chars))
 		{
 			alert('Please specify a valid number of characters');
-			$('#option-length-classic').addClass('error');
+			$options.find('.option-length').addClass('error');
 			
 			ok = false;
 		}
 		
-		$('input.type-char:checked').each(function()
-		{
-			possible_chars += $(this).attr('data-chars');
-		});
-		
-		var length = possible_chars.length; 
-		if (length == 0)
-		{
-			alert('Please specify at least one type of character');
-			$('#options-type-char').addClass('error');
-
-			ok = false;
-		}
+		var length = words.length;
 	
 	//PART 2 - GENERATION
 		function generate()
 		{
 			var pw = "";
-			for (var i=0; i<nb_chars;++i)
+			var sep = "";
+			for (var i=0; i!=nb_chars; ++i)
 			{
-				var k = Math.floor((Math.random()*length)) % length;
-				pw += possible_chars[k];
+				//pw += possible_chars[k];
+					var k = Math.floor((Math.random()*length)) % length;
+					var toadd = words[k];
+					if (is_capital)
+					{
+						toadd = applyCapitals(toadd);
+					}
+					
+					if (leet_mode && Math.random() < 0.5)
+					{
+						console.log("leet");
+						toadd = to1337Mode(toadd);
+					}
+					pw += sep + toadd;
+				
+				sep = " "; 
 			}
 			return pw;
 		}
@@ -47,26 +60,42 @@ window.strategy_classic = function()
 	//PART 3 - ROBUSTNESS
 		if (ok === true)
 		{
-			function bf_time(bf_cases, bf_speed)
-			{
-				return toTimeReadable(Math.ceil(bf_cases / bf_speed));
-			}
-			
-			//Brute-force estimate
-				var bf_cases = Math.pow(possible_chars.length, nb_chars);
-				var bf_speed = 100000000; //100M/s
-				var sha1_speed = 710000000; //710M/s
-				var md5_speed = 2414000000; //2414M/s
+			var charset = 27;
 
-				$('#bf-cases').text(bf_cases.toExponential(3));
-				
-				$('#bf-time').text(bf_time(bf_cases, bf_speed));
-				$('#bf-speed').text(toKiloNotation(bf_speed));
-
-				$('#sha1-time').text(bf_time(bf_cases, sha1_speed));
-				$('#sha1-speed').text(toKiloNotation(sha1_speed));
-
-				$('#md5-time').text(bf_time(bf_cases, md5_speed));
-				$('#md5-speed').text(toKiloNotation(md5_speed));
+			window.robustness($passwordInput.val(), charset, $passwordInput.val().length);
 		}
 };
+
+//Loading the words list asynchronously, it's about 1M
+(function($)
+{
+	$options = $('.options-subblock.options-sentence');
+	
+	$(document).ready(function(){
+		$.ajax({
+			url: "resources/js/words.txt",
+			success: function(data)
+			{
+				$('#loading-box').hide();
+				window.strategy_sentence_words = data.split("\n");
+				$options.find('.nb-words').text(window.strategy_sentence_words.length);
+				
+				var change_length = function()
+				{
+					var $this = $(this);
+					setTimeout(function()
+					{
+						var val = $this.val();
+						if (isInt(val))
+						{
+							var nb_cases = Math.pow(window.strategy_sentence_words.length, val);
+							$options.find('.nb-cases').text(toKiloNotation(nb_cases));
+							console.log(val);
+						}
+					}, 20);
+				};
+				$options.find('.option-length').keypress(change_length);
+			}
+		});
+	});
+})(jQuery);

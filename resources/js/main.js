@@ -1,9 +1,11 @@
 window.isInt = function(n) {
-	return typeof n === 'number' && n % 1 == 0;
+	return parseInt(n) == n;
 };
 //------------------------------------------------------------------------------
 
 window.toKiloNotation = function(i) {
+	if (i > 1000000000000000)
+		return i;
 	if (i > 1000000000000)
 		return Math.floor(i/100000000000)/10+"T";
 	if (i > 1000000000)
@@ -16,6 +18,36 @@ window.toKiloNotation = function(i) {
 }
 //------------------------------------------------------------------------------
 
+window.applyCapitals = function(str)
+{
+	var tmp = "";
+	var ratio = 0.4; //Augment this to get more uppercase letters
+	for (var j=0; j<str.length; ++j)
+	{
+		if (Math.random() < ratio)
+			tmp += str[j].toUpperCase();
+		else
+			tmp += str[j];
+	}
+	return tmp;
+}
+//------------------------------------------------------------------------------
+
+window.to1337Mode = function(str)
+{
+	var tmp = "";
+	var ratio = 0.5; //Augment this to get more uppercase letters
+	for (var j=0; j<str.length; ++j)
+	{
+		if (Math.random() < ratio)
+			tmp += str[j].replace(/[oO]/,'0').replace(/[li]/,'1').replace(/[Zz]/,'2').replace(/[Ee]/,'3').replace(/[Aa]/,'4').replace(/[Ss]/,'5').replace(/[Gg]/,'6').replace(/[Tt]/,'7').replace(/[Bb]/,'8');
+		else
+			tmp += str[j];
+	}
+	return tmp;	
+}
+//------------------------------------------------------------------------------
+
 window.toTimeReadable = function(seconds) {
 	var s = seconds % 60; seconds = Math.floor(seconds/60);
 	var m = seconds % 60; seconds = Math.floor(seconds/60);
@@ -24,12 +56,12 @@ window.toTimeReadable = function(seconds) {
 	var y = seconds/* % 100; seconds = Math.floor(seconds/100);
 	var c = seconds*/;
 
-	/*if (c > 0)
-		return ""+c+" centuries, "+y+" years";
-	else*/ if (y > 0)
+	if (y > 0)
 	{
-		if (y > 1000)
+		if (y < 9999 && y > 1000)
+		{
 			y = Math.floor(y/1000)+"M";
+		}
 		return ""+y+" years, "+d+" days";
 	}
 	else if (d > 0)
@@ -59,7 +91,7 @@ window.toTimeReadable = function(seconds) {
 	{
 			'classic':strategy_classic,
 			'pronounceable':strategy_pronounceable, 
-			//'sentence':strategy_sentence, 
+			'sentence':strategy_sentence, 
 	}
 	var current_strategy = 'classic';
 
@@ -79,7 +111,7 @@ window.toTimeReadable = function(seconds) {
 	
 	$generateBtn.click(function()
 	{
-		strategies[current_strategy]();
+		strategies[current_strategy]($);
 		$('.robustness-block').css('opacity', 1);
 	});
 })(jQuery);

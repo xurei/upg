@@ -1,4 +1,4 @@
-window.strategy_classic = function()
+window.strategy_classic = function($)
 {
 	$options = $('.options-subblock.options-classic');
 	
@@ -49,26 +49,6 @@ window.strategy_classic = function()
 	//PART 3 - ROBUSTNESS
 		if (ok === true)
 		{
-			function bf_time(bf_cases, bf_speed)
-			{
-				return toTimeReadable(Math.ceil(bf_cases / bf_speed));
-			}
-			
-			//Brute-force estimate
-				var bf_cases = Math.pow(possible_chars.length, nb_chars);
-				var bf_speed = 1000000000; //1000M/s
-				var sha1_speed = 710000000; //710M/s
-				var md5_speed = 2414000000; //2414M/s
-
-				$('#bf-cases').text(bf_cases.toExponential(3));
-				
-				$('#bf-time').text(bf_time(bf_cases, bf_speed));
-				$('#bf-speed').text(toKiloNotation(bf_speed));
-
-				$('#sha1-time').text(bf_time(bf_cases, sha1_speed));
-				$('#sha1-speed').text(toKiloNotation(sha1_speed));
-
-				$('#md5-time').text(bf_time(bf_cases, md5_speed));
-				$('#md5-speed').text(toKiloNotation(md5_speed));
+			window.robustness($passwordInput.val(), possible_chars.length, nb_chars);
 		}
 };
