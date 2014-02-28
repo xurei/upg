@@ -169,9 +169,5 @@
         <script src="resources/js/md5.js"></script>
         <script src="resources/js/sha1.js"></script>
         <script src="resources/js/sha256.js"></script>
-        
-        <?php if (file_exists("/home/olivier")): ?>
-        	<script src="../cssrefresh.js"></script>
-        <?php endif?>
     </body>
 </html>
