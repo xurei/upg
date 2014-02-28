@@ -82,7 +82,7 @@ window.strategy_sentence = function($)
 				
 				var change_length = function()
 				{
-					var $this = $(this);
+					var $this = $options.find('.option-length');
 					setTimeout(function()
 					{
 						var val = $this.val();
@@ -95,6 +95,7 @@ window.strategy_sentence = function($)
 					}, 20);
 				};
 				$options.find('.option-length').keypress(change_length);
+				change_length();
 			}
 		});
 	});

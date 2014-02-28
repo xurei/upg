@@ -8,7 +8,7 @@ input::-webkit-input-placeholder { // WebKit browsers */
 	@include opacity(1);
 }
 input:-moz-placeholder { // Mozilla Firefox 4 to 18 */
-  	color: $light-gray;
+  color: $light-gray;
 	@include opacity(1);
 }
 input::-moz-placeholder { // Mozilla Firefox 19+ */
@@ -16,7 +16,7 @@ input::-moz-placeholder { // Mozilla Firefox 19+ */
 	@include opacity(1);
 }
 input:-ms-input-placeholder { // Internet Explorer 10+ */
-  	color: $light-gray;
+  color: $light-gray;
 	@include opacity(1);
 }
 

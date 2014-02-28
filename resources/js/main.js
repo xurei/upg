@@ -1,10 +1,17 @@
 window.isInt = function(n) {
 	return parseInt(n) == n;
 };
+window.isSciNotation = function(i) {
+	var stri = ""+i;
+	if (stri.search('e') != -1)
+		return true;
+	else
+		return false;
+};
 //------------------------------------------------------------------------------
 
 window.toKiloNotation = function(i) {
-	if (i > 1000000000000000)
+	if (isSciNotation(i))
 		return i;
 	if (i > 1000000000000)
 		return Math.floor(i/100000000000)/10+"T";
@@ -53,12 +60,11 @@ window.toTimeReadable = function(seconds) {
 	var m = seconds % 60; seconds = Math.floor(seconds/60);
 	var h = seconds % 24; seconds = Math.floor(seconds/24);
 	var d = seconds % 365; seconds = Math.floor(seconds/365);
-	var y = seconds/* % 100; seconds = Math.floor(seconds/100);
-	var c = seconds*/;
+	var y = seconds;
 
 	if (y > 0)
 	{
-		if (y < 9999 && y > 1000)
+		if (!isSciNotation(y) && y > 1000)
 		{
 			y = Math.floor(y/1000)+"M";
 		}

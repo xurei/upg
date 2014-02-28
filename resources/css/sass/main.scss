@@ -81,6 +81,8 @@ input[type="checkbox"]
 	text-align: left;
 	
 	margin-bottom: 10px;
+	
+	width: 75%;
 
 	&.active
 	{
@@ -102,11 +104,16 @@ input[type="checkbox"]
 #password
 {
 	background: #fff;
-	width: 98%;
+	width: 94%;
 	display: inline-block;
 	font-size: 2em;
 	font-family: monospace;
 	text-align: center;
+	
+	@media(max-width:767px)
+	{
+		font-size: 1em;
+	}
 }
 
 #bf-cases

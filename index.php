@@ -10,8 +10,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
         <link rel="stylesheet" href="resources/css/main.css">
         <script src="resources/js/modernizr-2.6.2.min.js"></script>
         <script src="resources/js/jquery-1.10.2.min.js"></script>
@@ -20,8 +18,6 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <!-- Add your site or application content here -->
         
         <div class="w1000">
         	<h1>Ultimate Password Generator</h1>
@@ -75,22 +71,18 @@
 		       				
 		       				<h3>Type of characters</h3>
 		       				<fieldset id="options-type-char">
-		       					<!-- <input type="checkbox" class="type-char" id="option-pronounceable-capital" data-vowels="AEIOUY" data-consonants="ZRTPQSDFGHJKLMWXCVBN"> <label for="option-pronounceable-capital">Capital Letters</label><br>
-		       					<input type="checkbox" class="type-char" id="option-pronounceable-numbers" data-vowels="0134" data-consonants="125678"> <label for="option-pronounceable-numbers">Numbers</label><br>
-		       					<input type="checkbox" class="type-char" id="option-pronounceable-whitesp" data-vowels=" " data-consonants=" "> <label for="option-pronounceable-whitesp">White Space</label><br>
-		       					 -->
-		       					<input type="checkbox" class="type-char" id="option-pronounceable-capital" data-vowels="AEIOUY" data-consonants="ZRTPQSDFGHJKLMWXCVBN"> <label for="option-pronounceable-capital">Capital Letters</label><br>
-		       					<input type="checkbox" class="type-char" id="option-pronounceable-leet-mode" data-vowels="0134" data-consonants="125678"> <label for="option-pronounceable-leet-mode">1337 mode</label><br>
+		       					<input type="checkbox" class="type-char" id="option-pronounceable-capital"> <label for="option-pronounceable-capital">Capital Letters</label><br>
+		       					<input type="checkbox" class="type-char" id="option-pronounceable-leet-mode"> <label for="option-pronounceable-leet-mode">1337 mode</label><br>
 		       				</fieldset>
 	       				</div>
 	       				
 	       				<div class="options-subblock options-sentence">
 		       				<h3>Number of words</h3>
 		       				<input type="text" class="option-length" value="4"><br>
-		       				out of <span class="nb-words"></span> words : <span class="nb-cases"></span> different possibilities.
-		       				
-	       					<input type="checkbox" class="type-char" id="option-pronounceable-capital" data-vowels="AEIOUY" data-consonants="ZRTPQSDFGHJKLMWXCVBN"> <label for="option-pronounceable-capital">Capital Letters</label><br>
-	       					<input type="checkbox" class="type-char" id="option-pronounceable-leet-mode" data-vowels="0134" data-consonants="125678"> <label for="option-pronounceable-leet-mode">1337 mode</label><br>
+		       				out of <span class="nb-words"></span> words :<br><span class="nb-cases"></span> different possibilities.
+		       				<br>
+	       					<input type="checkbox" class="type-char" id="option-pronounceable-capital"> <label for="option-pronounceable-capital">Capital Letters</label><br>
+	       					<input type="checkbox" class="type-char" id="option-pronounceable-leet-mode"> <label for="option-pronounceable-leet-mode">1337 mode</label><br>
 		       				
 		       			</div>
 	       				<div class="acenter">
